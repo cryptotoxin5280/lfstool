@@ -1,0 +1,78 @@
+{
+  "name": "linux-fstool",
+  "version": "0.1.0",
+  "description": "Linux Filesystem Backup & Restore Utility",
+  "author": "Sea Machines Robotics",
+  "private": true,
+  "main": "public/electron.js",
+  "homepage": "./",
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "bootstrap": "^5.1.0",
+    "cors": "^2.8.5",
+    "electron-is-dev": "^2.0.0",
+    "node-scp": "0.0.15",
+    "ping": "^0.4.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.1",
+    "simple-ssh": "^1.0.0",
+    "web-vitals": "^1.1.2"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "cross-env": "^7.0.3",
+    "electron": "^13.2.3",
+    "electron-builder": "^22.11.7",
+    "react-scripts": "^1.1.5",
+    "wait-on": "^6.0.0"
+  },
+  "scripts": {
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "build": "npm run react-build && electron-builder --win -c.extraMetadata.main=build/electron.js",
+    "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on tcp:3000 && electron .\""
+  },
+  "build": {
+    "appId": "com.fstool",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "portable": {
+      "artifactName": "smr-lfstool.exe"
+    },
+    "win": {
+      "icon": "./public/smr.png",
+      "target": [
+        "portable"
+      ]
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
